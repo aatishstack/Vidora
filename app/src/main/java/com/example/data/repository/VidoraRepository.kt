@@ -20,6 +20,17 @@ class VidoraRepository(
         return downloadDao.getDownloadById(id)?.toDomain()
     }
 
+    suspend fun getRealMediaInfo(url: String): com.example.data.api.MediaLookupResponse? {
+        return try {
+            com.example.data.api.RetrofitClient.apiService.getMediaInfo(
+                com.example.data.api.MediaLookupRequest(url)
+            )
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
+    }
+
     suspend fun enqueueDownload(
         url: String,
         providerId: String,
@@ -29,7 +40,8 @@ class VidoraRepository(
         videoQuality: String,
         isAudioOnly: Boolean,
         fileBytes: Long,
-        channelName: String = "Vidora Creator"
+        channelName: String = "Vidora Creator",
+        directUrl: String? = null
     ): String {
         val id = UUID.randomUUID().toString()
         val now = System.currentTimeMillis()
@@ -55,7 +67,8 @@ class VidoraRepository(
             channelName = channelName,
             playCount = 0,
             isFavorite = false,
-            folderName = null
+            folderName = null,
+            directUrl = directUrl
         )
         downloadDao.insertDownload(entity)
         downloadEngine.startDownload(id)

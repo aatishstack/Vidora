@@ -15,12 +15,12 @@ RUN curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o 
 WORKDIR /usr/src/app
 
 COPY package*.json ./
-RUN npm ci --only=production
+RUN npm install
 
 COPY . .
 
-# Compile TS code if needed, but we output standard node launcher for prod:
-RUN npm install -g typescript && tsc
+# Compile TS code using local tsc with devDependencies
+RUN npm run build
 
 EXPOSE 8080
 

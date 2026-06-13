@@ -27,7 +27,8 @@ data class DownloadEntity(
     val channelName: String,
     val playCount: Int,
     val isFavorite: Boolean,
-    val folderName: String?
+    val folderName: String?,
+    val directUrl: String? = null
 ) {
     fun toDomain(): DownloadItem {
         return DownloadItem(
@@ -51,7 +52,8 @@ data class DownloadEntity(
             channelName = channelName,
             playCount = playCount,
             isFavorite = isFavorite,
-            folderName = folderName
+            folderName = folderName,
+            directUrl = directUrl
         )
     }
 
@@ -78,7 +80,8 @@ data class DownloadEntity(
                 channelName = domain.channelName,
                 playCount = domain.playCount,
                 isFavorite = domain.isFavorite,
-                folderName = domain.folderName
+                folderName = domain.folderName,
+                directUrl = domain.directUrl
             )
         }
     }

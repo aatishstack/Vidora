@@ -57,6 +57,7 @@ fastify.post('/v1/media/info', async (request, reply) => {
         .filter((f: any) => f.vcodec !== 'none' || f.acodec !== 'none')
         .map((f: any) => ({
           format_id: f.format_id,
+          url: f.url || null,
           ext: f.ext,
           quality_label: f.format_note || `${f.width || 0}p`,
           width: f.width || null,

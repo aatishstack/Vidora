@@ -21,7 +21,8 @@ data class DownloadItem(
     val channelName: String = "Vidora Creator",
     val playCount: Int = 0,
     val isFavorite: Boolean = false,
-    val folderName: String? = null
+    val folderName: String? = null,
+    val directUrl: String? = null
 )
 
 enum class DownloadStatus {
@@ -36,7 +37,8 @@ data class MediaFormat(
     val width: Int?,
     val height: Int?,
     val fileSizeBytes: Long?,
-    val isRecommended: Boolean = false
+    val isRecommended: Boolean = false,
+    val url: String? = null
 )
 
 data class SupportedProvider(

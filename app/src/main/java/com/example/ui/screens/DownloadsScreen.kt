@@ -370,7 +370,7 @@ fun DownloadManagerCard(
 
                     if (item.status == DownloadStatus.DOWNLOADING) {
                         Text(
-                            text = "2.4 MB/s",
+                            text = "Active Sync",
                             fontSize = 11.sp,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.primary
